@@ -1,0 +1,7 @@
+.profile__user {
+  max-width: 336px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
