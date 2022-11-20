@@ -1,7 +1,14 @@
 .profile__user {
-  max-width: 336px;
+  width: 336px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
+}
+
+@media screen and (max-width: 500px) {
+  .profile__user {
+    max-width: 220px;
+    align-items: center;
+  }
 }

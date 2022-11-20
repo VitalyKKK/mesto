@@ -14,3 +14,10 @@
 .profile__add-button:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 568px) {
+  .profile__add-button {
+    width: 282px;
+    background-size: 16px;
+  }
+}

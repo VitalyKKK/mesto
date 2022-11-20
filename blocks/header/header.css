@@ -1,6 +1,12 @@
 .header {
   font-family: "Inter", "Arial", sans-serif;
   max-width: 100%;
-  padding: 0 0 41px;
+  padding: 0 0 37px;
   border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    padding: 0 0 27px;
+  }
 }

@@ -6,3 +6,10 @@
   gap: 50px;
   padding: 40px 0 66px;
 }
+
+@media screen and (max-width: 568px) {
+  .content {
+    gap: 36px;
+    padding: 42px 0 48px 0;
+  }
+}
