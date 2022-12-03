@@ -27,6 +27,7 @@
     </section>
     <section class="elements">
       <article class="element">
+        <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="element__group">
           <h2 class="element__title">Карачаевск</h2>
@@ -34,6 +35,7 @@
         </div>
       </article>
       <article class="element">
+        <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/elbrus.jpg" alt="Гора Эльбрус">
         <div class="element__group">
           <h2 class="element__title">Гора Эльбрус</h2>
@@ -41,6 +43,7 @@
         </div>
       </article>
       <article class="element">
+        <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/dombai.jpg" alt="Домбай">
         <div class="element__group">
           <h2 class="element__title">Домбай</h2>
@@ -48,6 +51,7 @@
         </div>
       </article>
       <article class="element">
+        <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/sochi.jpg" alt="Сочи">
         <div class="element__group">
           <h2 class="element__title">Сочи</h2>
@@ -55,6 +59,7 @@
         </div>
       </article>
       <article class="element">
+        <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/kamchatka.jpg" alt="Камчатка">
         <div class="element__group">
           <h2 class="element__title">Камчатка</h2>
@@ -62,6 +67,7 @@
         </div>
       </article>
       <article class="element">
+        <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/ergaki.jpg" alt="Ергаки">
         <div class="element__group">
           <h2 class="element__title">Ергаки</h2>
@@ -71,7 +77,7 @@
     </section>
   </main>
   <footer class="footer">
-  <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+  <p class="footer__copyright">&copy; 2022 Виталий Костин</p>
   </footer>
   <!-- попап -->
   <div class="popup ">
@@ -82,6 +88,17 @@
         <input class="popup__input popup__input_user_name" type="text" name="name" placeholder="Ваше имя">
         <input class="popup__input popup__input_user_description" type="text" name="description" placeholder="Чем занимаетесь">
         <button class="popup__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_opened">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <form class="popup__form" name="add-element"> 
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__input popup__input_user_place-name" type="text" name="place-name" placeholder="Название">
+        <input class="popup__input popup__input_user_img-link" type="url" name="img-link" placeholder="Ссылка на картинку">
+        <button class="popup__submit-button" type="submit">Создать</button>
       </form>
     </div>
   </div>
