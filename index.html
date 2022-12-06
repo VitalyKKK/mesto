@@ -26,7 +26,7 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="elements">
-      <article class="element">
+      <!-- <article class="element">
         <button class="element__delete" type="button"></button>
         <img class="element__img" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="element__group">
@@ -73,17 +73,17 @@
           <h2 class="element__title">Ергаки</h2>
           <button class="element__like" type="button"></button>
         </div>
-      </article>
+      </article> -->
     </section>
   </main>
   <footer class="footer">
-  <p class="footer__copyright">&copy; 2022 Виталий Костин</p>
+    <p class="footer__copyright">&copy; 2022 Виталий Костин</p>
   </footer>
   <!-- попап -->
-  <div class="popup ">
+  <div class="popup popup__user">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
-      <form class="popup__form" name="user-form"> 
+      <form class="popup__form popup__form_user" name="user-form"> 
         <h2 class="popup__title">Редактировать профиль</h2>
         <input class="popup__input popup__input_user_name" type="text" name="name" placeholder="Ваше имя">
         <input class="popup__input popup__input_user_description" type="text" name="description" placeholder="Чем занимаетесь">
@@ -94,7 +94,7 @@
   <div class="popup popup_add-element">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
-      <form class="popup__form popup__form_card" name="add-element"> 
+      <form class="popup__form popup__form_element" name="add-element"> 
         <h2 class="popup__title">Новое место</h2>
         <input class="popup__input popup__input_user_place-name" type="text" name="place-name" placeholder="Название">
         <input class="popup__input popup__input_user_img-link" type="url" name="img-link" placeholder="Ссылка на картинку">
@@ -102,25 +102,25 @@
       </form>
     </div>
   </div>
-    <div class="popup ">
-      <div class="popup__view-container">
-        <button class="popup__close-button" type="button"></button>
-        <div class="popup__img-view">
-          <img class="popup__img" src="#" alt="">
-          <p class="popup__view-title"></p>
-        </div>
+  <div class="popup popup__view">
+    <div class="popup__view-container">
+      <button class="popup__close-button" type="button"></button>
+      <div class="popup__img-view">
+        <img class="popup__img" src="#" alt="">
+        <p class="popup__view-title"></p>
       </div>
     </div>
-    <template class="card-template">
-      <article class="element">
-        <button class="element__delete" type="button"></button>
-        <img class="element__img" src="" alt="">
-        <div class="element__group">
-          <h2 class="element__title"></h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-    </template>
-  <script src="./scripts/index.js"></script>
+  </div>
+  <template class="card-template">
+    <article class="element">
+      <button class="element__delete" type="button"></button>
+      <img class="element__img" src="" alt="">
+      <div class="element__group">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button"></button>
+      </div>
+    </article>
+  </template>
+<script src="./scripts/index.js"></script>
 </body>
 </html>
