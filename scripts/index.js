@@ -91,6 +91,17 @@ initialCards.forEach((item) => {
   renderCardElement(item, elementsContainer);
 });
 
+const addCardFormSubmitHandler = (evt) => {
+  evt.preventDefault();
+  const addElement = {
+    name: placeNameInput.value,
+    link: linkImgInput.value
+  };
+  addedRenderCardElement(addElement, elementsContainer);
+  closePopup();
+  evt.target.reset();
+}
+
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
 }
