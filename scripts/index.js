@@ -37,7 +37,7 @@ const validationConfig = {
 import { enableValidation } from './validate.js';
 import { resetValidationError } from './validate.js';
 
-function createInitialCards(item) {
+const createCard = (item) => {
   const cardElement = cardTemplate.cloneNode(true);
   const buttonlikeCard = cardElement.querySelector('.element__like');
   const buttonDeleteCard = cardElement.querySelector('.element__delete');
@@ -68,12 +68,12 @@ const handleDeleteCard = (evt) => {
 }
 
 const handleRenderCard = (item, wrapElement) => {
-  const element = createInitialCards(item);
+  const element = createCard(item);
   wrapElement.append(element);
 }
 
 const handleAddedRenderCard = (item, wrapElement) => {
-  const element = createInitialCards(item);
+  const element = createCard(item);
   wrapElement.prepend(element);
 }
 
@@ -103,15 +103,14 @@ const closePopup = (popup) => {
 }
 
 const closePopupByClickOnOverlay = (evt) => {
-  const openedPopup = document.querySelector('.popup_opened');
   if (evt.target === evt.currentTarget) {
-    closePopup(openedPopup);
+    closePopup(evt.currentTarget);
   }
 }
 
 const closePopupEscButton = (evt) => {
-  const openedPopup = document.querySelector('.popup_opened');
   if (evt.key === escButton) {
+    const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 }
