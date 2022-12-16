@@ -1,7 +1,6 @@
 import initialCards from './cards.js';
 
 const popupCard = document.querySelector('.popup_add-element');
-const buttonsClosePopup = document.querySelectorAll('.popup__close-button');
 const popupProfile = document.querySelector('.popup_type_user');
 const popupView = document.querySelector('.popup_type_view');
 const formEditProfile = document.querySelector('.popup__form_user');
@@ -20,6 +19,22 @@ const profileName = profileElement.querySelector('.profile__title');
 const profileDescription = profileElement.querySelector('.profile__subtitle');
 const elementsContainer = document.querySelector('.elements')
 const cardTemplate = document.querySelector('.card-template').content.querySelector('.element');
+const popupElements = document.querySelectorAll('.popup');
+const buttonClosePopupProfile = popupProfile.querySelector('.popup__close-button_place_edit-profile');
+const buttonClosePopupCard = popupCard.querySelector('.popup__close-button_place_add-card');
+const buttonClosePopupView = popupView.querySelector('.popup__close-button_place_img');
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+};
+
+import { enableValidation } from './validate.js';
+import { resetValidationError } from './validate.js';
 
 function createInitialCards(item) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -30,61 +45,61 @@ function createInitialCards(item) {
   titleElement.textContent = item.name;
   imgElement.src = item.link;
   imgElement.alt = item.name;
-  imgElement.addEventListener('click', imagePopupHandler);
-  buttonlikeCard.addEventListener('click', likeCardHandler);
-  buttonDeleteCard.addEventListener('click', deleteCardHandler);
+  imgElement.addEventListener('click', handleImagePopup);
+  buttonlikeCard.addEventListener('click', handleLikeButton);
+  buttonDeleteCard.addEventListener('click', handleDeleteCard);
   return cardElement;
 }
 
-const imagePopupHandler = (evt) => {
+const handleImagePopup = (evt) => {
   imagePopupView.src = evt.target.src;
   imagePopupView.alt = evt.target.closest('.element').querySelector('.element__title').textContent;
   titlePopupView.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
   openPopup(popupView);
 }
 
-const likeCardHandler = (evt) => {
+const handleLikeButton = (evt) => {
   evt.target.classList.toggle('element__like_active');
 }
 
-const deleteCardHandler = (evt) => {
+const handleDeleteCard = (evt) => {
   evt.target.closest('.element').remove();
 }
 
-const renderCardElement = (item, wrapElement) => {
+const handleRenderCard = (item, wrapElement) => {
   const element = createInitialCards(item);
   wrapElement.append(element);
 }
 
-const addedRenderCardElement = (item, wrapElement) => {
+const handleAddedRenderCard = (item, wrapElement) => {
   const element = createInitialCards(item);
   wrapElement.prepend(element);
 }
 
 initialCards.forEach((item) => {
-  renderCardElement(item, elementsContainer);
+  handleRenderCard(item, elementsContainer);
 });
 
-const addCardFormSubmitHandler = (evt) => {
+const cardAdditionFormHandler = (evt) => {
   evt.preventDefault();
   const addElement = {
     name: placeNameInput.value,
     link: linkImgInput.value
   };
-  addedRenderCardElement(addElement, elementsContainer);
+  handleAddedRenderCard(addElement, elementsContainer);
   closePopup(popupCard);
   evt.target.reset();
 }
 
 const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
+  popup.classList.add('popup_opened');;
 }
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 }
 
-const editProfileDataSubstitution = () => {
+const handleEditProfileDataSubstitution = () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
 }
@@ -97,16 +112,20 @@ const editProfileFormSubmitHandler = (evt) => {
 }
 
 buttonOpenPopupProfile.addEventListener('click', () => {
+  handleEditProfileDataSubstitution();
+  resetValidationError(formEditProfile, validationConfig);
+  enableValidation(validationConfig);
   openPopup(popupProfile);
-  editProfileDataSubstitution();
 });
-buttonOpenPopupCard.addEventListener('click', () => openPopup(popupCard));
-formEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
-formPopupCard.addEventListener('submit', addCardFormSubmitHandler);
+buttonOpenPopupCard.addEventListener('click', () => {
+  enableValidation(validationConfig);
+  openPopup(popupCard);
+});
 
-buttonsClosePopup.forEach( (element) => {
-  const popup = element.closest(".popup");
-  element.addEventListener('click', () => {
-    closePopup(popup);
-  })
-});
+buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
+buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
+buttonClosePopupView.addEventListener('click', () => closePopup(popupView));
+popupElements.forEach((element) => element.addEventListener('click', closePopupByClickOnOverlay));
+
+formEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
+formPopupCard.addEventListener('submit', cardAdditionFormHandler);
