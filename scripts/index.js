@@ -23,6 +23,7 @@ const popupElements = document.querySelectorAll('.popup');
 const buttonClosePopupProfile = popupProfile.querySelector('.popup__close-button_place_edit-profile');
 const buttonClosePopupCard = popupCard.querySelector('.popup__close-button_place_add-card');
 const buttonClosePopupView = popupView.querySelector('.popup__close-button_place_img');
+const escButton = 'Escape';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -92,11 +93,27 @@ const cardAdditionFormHandler = (evt) => {
 }
 
 const openPopup = (popup) => {
-  popup.classList.add('popup_opened');;
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscButton);
 }
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEscButton);
+}
+
+const closePopupByClickOnOverlay = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (evt.target === evt.currentTarget) {
+    closePopup(openedPopup);
+  }
+}
+
+const closePopupEscButton = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (evt.key === escButton) {
+    closePopup(openedPopup);
+  }
 }
 
 const handleEditProfileDataSubstitution = () => {
